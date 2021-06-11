@@ -42,7 +42,15 @@ async def get_user_info(username: str):
 
     return  user_out
 
+@api.get("/game/play/{username}/{rama}")
+async def play_answer(username: str, rama: str):
 
+    answer = get_answer(username, rama)
+
+    if answer == None:
+        raise HTTPException(status_code=404, detail="Respuesta no existe")
+    
+    return answer
 
 @api.put("/game/final/")
 async def end_game(final_in: FinalIn):

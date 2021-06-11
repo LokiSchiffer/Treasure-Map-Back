@@ -36,6 +36,6 @@ database_game = {
 
 def get_answer(username : str, rama : str):
     if username in database_game.keys():
-        return database_game[username][rama]
+        return database_game[username].dict()[rama]
     else:
         return None
