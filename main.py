@@ -5,7 +5,7 @@ from db.game_db import GameInDB
 from db.game_db import get_answer
 
 from db.final_db import FinalInDB
-from db.final_db import save_place
+from db.final_db import save_place, get_user_podium
 
 from models.user_models import UserIn, UserOut
 from models.game_models import GameIn, GameOut
@@ -17,7 +17,7 @@ from fastapi import FastAPI, HTTPException
 api = FastAPI()
 
 
-@api.post("/user/auth/")
+@api.post("/game/auth/")
 async def auth_user(user_in: UserIn):
 
     user_in_db = get_user(user_in.username)
@@ -30,7 +30,7 @@ async def auth_user(user_in: UserIn):
 
     return  {"Autenticado": True}
 
-@api.get("/user/info/{username}")
+@api.get("/game/info/{username}")
 async def get_user_info(username: str):
 
     user_in_db = get_user(username)
@@ -41,3 +41,25 @@ async def get_user_info(username: str):
     user_out = UserOut(**user_in_db.dict())
 
     return  user_out
+
+
+
+@api.put("/game/final/")
+async def end_game(final_in: FinalIn):
+
+    podium = get_user_podium(final_in.username)
+
+    if podium != None:
+        raise HTTPException(status_code=403, detail="El usuario ya existe")
+    
+    user_in_db = get_user(final_in.username)
+
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+
+    final_in_db = FinalInDB(**final_in.dict())
+    final_in_db = save_place(final_in_db)
+
+    final_out = FinalOut(**final_in_db.dict())
+
+    return  final_out
