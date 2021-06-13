@@ -60,7 +60,7 @@ async def end_game(final_in: FinalIn):
     podium = get_user_podium(final_in.username)
 
     if podium != None:
-        raise HTTPException(status_code=403, detail="El usuario ya existe")
+        raise HTTPException(status_code=403, detail="El usuario ya ha completado el juego")
     
     user_in_db = get_user(final_in.username)
 
