@@ -62,7 +62,7 @@ async def play_answer(username: str, rama: str):
     if answer == None:
         raise HTTPException(status_code=404, detail="Respuesta no existe")
     
-    answer_out = GameOut(**answer.dict())
+    answer_out = GameOut(**{"answer": answer})
     
     return answer_out
 
