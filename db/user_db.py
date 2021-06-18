@@ -10,7 +10,7 @@ class UserInDB(BaseModel):
     username = Column(Integer, primary_key=True, unique=True)
     name = Column(String)
     password = Column(String)
-    ceremony = Column(Boolean)
+    ceremony = Column(String)
 
 Base.metadata.create_all(bind=engine)
 '''database_users = Dict[str, UserInDB]
