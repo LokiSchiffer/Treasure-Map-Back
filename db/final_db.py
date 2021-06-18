@@ -7,6 +7,8 @@ import datetime
 from db.db_conection import Base, engine
 
 class FinalInDB(BaseModel):
+    __tablename__ = "podium"
+    
     username = Column(Integer, ForeignKey("Users.username"), primary_key=True)
     place = Column(Integer, autoincrement=True)
     date = Column(DateTime, defauult=datetime.datetime.utcnow)
