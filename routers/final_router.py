@@ -3,7 +3,7 @@ from typing import List
 from fastapi import Depends, APIRouter, HTTPException
 from sqlalchemy.orm import Session
 
-from db.db_conection import get_db
+from db.db_connection import get_db
 
 from db.user_db import UserInDB
 from db.final_db import FinalInDB
