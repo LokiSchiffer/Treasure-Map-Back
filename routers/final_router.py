@@ -15,10 +15,10 @@ router = APIRouter()
 @router.put("/game/final/", response_model=FinalOut)
 async def end_game(final_in: FinalIn, db: Session = Depends(get_db)):
 
-    podium = db.query(FinalInDB).get(final_in.username)
-
-    if podium != None:
-        raise HTTPException(status_code=403, detail="El usuario ya ha completado el juego")
+    podium = db.query(FinalInDB).all()
+    for user in podium:
+        if user.username == final_in.username:
+            raise HTTPException(status_code=403, detail="El usuario ya ha completado el juego")
     
     user_in_db = db.query(UserInDB).get(final_in.username)
 
