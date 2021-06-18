@@ -1,13 +1,18 @@
-from typing import Dict
-from pydantic import BaseModel
+'''from typing import Dict
+from pydantic import BaseModel'''
+from sqlalchemy import Column, Integer, String, Boolean
+from db.db_conection import Base, engine
 
 class UserInDB(BaseModel):
-    username: str
-    name : str
-    password: str
-    ceremony: bool
+    __tablename__ = "users"
+    
+    username = Column(Integer, primary_key=True, unique=True)
+    name = Column(String)
+    password = Column(String)
+    ceremony = Column(Boolean)
 
-database_users = Dict[str, UserInDB]
+Base.metadata.create_all(bind=engine)
+'''database_users = Dict[str, UserInDB]
 
 database_users = {
     "1018441322" : UserInDB(**{"username" : "1018441322",
@@ -34,4 +39,4 @@ def get_user(username : str):
 
 def update_user(user_in_db: UserInDB):
     database_users[user_in_db.username] = user_in_db
-    return user_in_db
+    return user_in_db'''
