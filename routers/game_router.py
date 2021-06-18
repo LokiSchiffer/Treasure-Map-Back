@@ -19,6 +19,15 @@ async def get_user_info(username: str, rama: str, db: Session = Depends(get_db))
     if user_in_db == None:
         raise HTTPException(status_code=404, detail="La respuesta no existe")
     
-    answer_out = GameOut(**{"answer": user_in_db[rama]})
+    if rama == "manada":
+        answer_out = GameOut(**{"answer": user_in_db.manada})
+    elif rama == "tropa":
+        answer_out = GameOut(**{"answer": user_in_db.tropa})
+    elif rama == "comunidad":
+        answer_out = GameOut(**{"answer": user_in_db.comunidad})
+    elif rama == "clan":
+        answer_out = GameOut(**{"answer": user_in_db.clan})
+    elif rama == "jefatura":
+        answer_out = GameOut(**{"answer": user_in_db.jefatura})
     
     return answer_out
