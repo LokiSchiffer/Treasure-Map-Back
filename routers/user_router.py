@@ -11,7 +11,7 @@ from models.user_models import UserIn, UserOut
 
 router = APIRouter()
 
-@router.post("/user/auth/")
+@router.post("/game/auth/")
 async def auth_user(user_in: UserIn, db: Session = Depends(get_db)):
     
     user_in_db = db.query(UserInDB).get(user_in.username)
