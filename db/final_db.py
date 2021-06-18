@@ -1,17 +1,19 @@
 '''from datetime import datetime'''
-from pydantic import BaseModel
+#from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer, DateTime
+from sqlalchemy import PrimaryKeyConstraint
 import datetime
 
 from db.db_connection import Base, engine
 
-class FinalInDB(BaseModel):
+class FinalInDB(Base):
     __tablename__ = "podium"
     
-    username = Column(Integer, ForeignKey("Users.username"), primary_key=True)
+    username = Column(Integer, ForeignKey("users.username"))
     place = Column(Integer, autoincrement=True)
-    date = Column(DateTime, defauult=datetime.datetime.utcnow)
+    date = Column(DateTime, default=datetime.datetime.utcnow)
+    PrimaryKeyConstraint(username, place)
 
 Base.metadata.create_all(bind=engine)
 '''database_podium = []
