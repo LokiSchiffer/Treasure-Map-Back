@@ -1,14 +1,14 @@
 '''from typing import Dict'''
-from pydantic import BaseModel
+#from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer, String
 
 from db.db_connection import Base, engine
 
-class GameInDB(BaseModel):
+class GameInDB(Base):
     __tablename__ = "gameq"
 
-    username = Column(Integer, ForeignKey("Users.username"), primary_key=True)
+    username = Column(Integer, ForeignKey("users.username"), primary_key=True)
     manada = Column(String)
     tropa = Column(String)
     comunidad = Column(String)

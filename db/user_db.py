@@ -1,16 +1,16 @@
 '''from typing import Dict'''
-from pydantic import BaseModel
+#from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String, Boolean
 
 from db.db_connection import Base, engine
 
-class UserInDB(BaseModel):
+class UserInDB(Base):
     __tablename__ = "users"
     
     username = Column(Integer, primary_key=True, unique=True)
     name = Column(String)
     password = Column(String)
-    ceremony = Column(String)
+    ceremony = Column(Boolean)
 
 Base.metadata.create_all(bind=engine)
 '''database_users = Dict[str, UserInDB]
