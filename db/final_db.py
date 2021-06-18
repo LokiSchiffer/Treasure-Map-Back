@@ -4,7 +4,7 @@ from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer, DateTime
 import datetime
 
-from db.db_conection import Base, engine
+from db.db_connection import Base, engine
 
 class FinalInDB(BaseModel):
     __tablename__ = "podium"

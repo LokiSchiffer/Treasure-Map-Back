@@ -1,7 +1,8 @@
 '''from typing import Dict'''
 from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String, Boolean
-from db.db_conection import Base, engine
+
+from db.db_connection import Base, engine
 
 class UserInDB(BaseModel):
     __tablename__ = "users"

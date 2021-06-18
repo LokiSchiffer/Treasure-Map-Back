@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer, String
 
+from db.db_connection import Base, engine
+
 class GameInDB(BaseModel):
     __tablename__ = "gameq"
 
