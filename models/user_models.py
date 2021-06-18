@@ -8,3 +8,6 @@ class UserOut(BaseModel):
     username : str
     name : str
     ceremony : str
+
+    class Config:
+        orm_mode = True
