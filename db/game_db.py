@@ -1,5 +1,5 @@
-'''from typing import Dict
-from pydantic import BaseModel'''
+'''from typing import Dict'''
+from pydantic import BaseModel
 from sqlalchemy import Column, ForeignKey
 from sqlalchemy import Integer, String
 
