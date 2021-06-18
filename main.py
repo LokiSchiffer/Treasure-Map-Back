@@ -1,4 +1,4 @@
-from db.user_db import UserInDB
+'''from db.user_db import UserInDB
 from db.user_db import update_user, get_user
 
 from db.game_db import GameInDB
@@ -11,12 +11,20 @@ from models.user_models import UserIn, UserOut
 from models.game_models import GameIn, GameOut
 from models.final_models import FinalIn, FinalOut
 
-import datetime
-from fastapi import FastAPI, HTTPException
+import datetime'''
+from fastapi import Depends, FastAPI, HTTPException
+
+from routers.user_router import router as router_users
+from routers.final_router import router as router_finals
+from routers.game_router import router as router_games
 
 from fastapi.middleware.cors import CORSMiddleware
 
 api = FastAPI()
+
+api.include_router(router_users)
+api.include_router(router_finals)
+api.include_router(router_games)
 
 
 origins = [
@@ -29,7 +37,7 @@ api.add_middleware(
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
 )
 
-@api.post("/game/auth/")
+'''@api.post("/game/auth/")
 async def auth_user(user_in: UserIn):
 
     user_in_db = get_user(user_in.username)
@@ -84,4 +92,4 @@ async def end_game(final_in: FinalIn):
 
     final_out = FinalOut(**final_in_db.dict())
 
-    return  final_out
+    return  final_out'''
