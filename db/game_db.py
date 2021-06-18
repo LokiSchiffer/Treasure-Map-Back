@@ -1,15 +1,20 @@
-from typing import Dict
-from pydantic import BaseModel
+'''from typing import Dict
+from pydantic import BaseModel'''
+from sqlalchemy import Column, ForeignKey
+from sqlalchemy import Integer, String
 
 class GameInDB(BaseModel):
-    username: str
-    manada : str
-    tropa : str
-    comunidad : str
-    clan : str
-    jefatura : str
+    __tablename__ = "gameq"
 
-database_game = Dict[str, GameInDB]
+    username = Column(Integer, ForeignKey("Users.username"), primary_key=True)
+    manada = Column(String)
+    tropa = Column(String)
+    comunidad = Column(String)
+    clan = Column(String)
+    jefatura = Column(String)
+
+Base.metadata.create_all(bind=engine)
+'''database_game = Dict[str, GameInDB]
 
 database_game = {
     "1018441322" : GameInDB(**{"username" : "1018441322",
@@ -38,4 +43,4 @@ def get_answer(username : str, rama : str):
     if username in database_game.keys():
         return database_game[username].dict()[rama]
     else:
-        return None
+        return None'''
