@@ -1,12 +1,18 @@
-from datetime import datetime
-from pydantic import BaseModel
+'''from datetime import datetime
+from pydantic import BaseModel'''
+from sqlalchemy import Column, ForeignKey
+from sqlalchemy import Integer, DateTime
+import datetime
+
+from db.db_conection import Base, engine
 
 class FinalInDB(BaseModel):
-    username : str
-    place : int = 0
-    date : datetime = datetime.now()
+    username = Column(Integer, ForeignKey("Users.username"), primary_key=True)
+    place = Column(Integer, autoincrement=True)
+    date = Column(DateTime, defauult=datetime.datetime.utcnow)
 
-database_podium = []
+Base.metadata.create_all(bind=engine)
+'''database_podium = []
 generator = {"id" : 0}
 
 def get_user_podium(username : str):
@@ -19,4 +25,4 @@ def save_place(final_in_db: FinalInDB):
     generator["id"] = generator["id"] + 1
     final_in_db.place = generator["id"]
     database_podium.append(final_in_db)
-    return final_in_db
+    return final_in_db'''
