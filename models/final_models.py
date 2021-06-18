@@ -2,10 +2,10 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class FinalIn(BaseModel):
-    username : str
+    username : int
 
 class FinalOut(BaseModel):
-    username : str
+    username : int
     place : int
     date : datetime
 

@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 
 class UserIn(BaseModel):
-    username : str
+    username : int
     password : str
 
 class UserOut(BaseModel):
-    username : str
+    username : int
     name : str
-    ceremony : str
+    ceremony : bool
 
     class Config:
         orm_mode = True

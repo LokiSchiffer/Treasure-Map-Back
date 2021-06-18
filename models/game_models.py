@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class GameIn(BaseModel):
-    username : str
+    username : int
     rama : str
 
 class GameOut(BaseModel):
