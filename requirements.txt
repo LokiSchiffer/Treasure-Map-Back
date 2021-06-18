@@ -1,3 +1,5 @@
-fastapi==0.62.0
-uvicorn==0.12.3
-pydantic==1.7.3
+fastapi==0.65.0
+uvicorn==0.14.0
+pydantic==1.8.2
+SQLAlchemy==1.4.18
+psycopg2==2.9.1
